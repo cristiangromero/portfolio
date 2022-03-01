@@ -14,5 +14,4 @@ export class ScriptLoaderService {
       body.appendChild(script);
     }
   }
-
 }

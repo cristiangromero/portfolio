@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {ScriptLoaderService} from './script-loader.service';
+import {ScriptLoaderService} from './services/script-loader.service';
 import { HeadComponent } from './components/head/head.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { AboutComponent } from './components/about/about.component';

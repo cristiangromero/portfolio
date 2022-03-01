@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ScriptLoaderService} from './script-loader.service';
+import {ScriptLoaderService} from './services/script-loader.service';
 
 @Component({
   selector: 'app-root',
