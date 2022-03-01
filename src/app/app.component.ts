@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ScriptLoaderService} from './script-loader.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'portfolio';
+  title = 'Portfolio';
+  constructor(private _LoadScripts:ScriptLoaderService){
+    _LoadScripts.loader(["js/main"]);
+  }
 }
