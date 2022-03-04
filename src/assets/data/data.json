@@ -1,0 +1,9 @@
+{
+  "picture": "assets/img/profile-img.jpg",
+  "name": "Cristian Romero",
+  "social":{
+    "name":"linkedin",
+    "url":"https://www.linkedin.com/in/rcristian/",
+    "icon": "bx bxl-linkedin"
+  }
+}

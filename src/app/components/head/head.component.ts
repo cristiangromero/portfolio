@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { data } from 'jquery';
+import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
   selector: 'app-head',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./head.component.scss']
 })
 export class HeadComponent implements OnInit {
-
-  constructor() { }
+  myPortfolio:any;
+  constructor(private datosPortfolio:PortfolioService) { }
 
   ngOnInit(): void {
+    this.datosPortfolio.getData().subscribe(data =>{
+      console.log(data);
+      this.myPortfolio=data;
+    });
   }
 
 }

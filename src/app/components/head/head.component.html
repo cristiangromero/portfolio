@@ -9,11 +9,11 @@
     <div class="d-flex flex-column">
   
       <div class="profile">
-        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">Cristian Romero</a></h1>
+        <img [src]="myPortfolio.picture" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">{{myPortfolio.name}}</a></h1>
         <div class="social-links mt-3 text-center">
-          <a href="https://www.linkedin.com/in/rcristian/" class="linkedin" target="_blank"><i
-              class="bx bxl-linkedin"></i></a>
+          <a [href]="myPortfolio.social.url" [class]="myPortfolio.social.name" target="_blank"><i
+              [class]="myPortfolio.social.icon"></i></a>
         </div>
       </div>
   
