@@ -1,9 +1,21 @@
 {
   "picture": "assets/img/profile-img.jpg",
   "name": "Cristian Romero",
-  "social":{
-    "name":"linkedin",
-    "url":"https://www.linkedin.com/in/rcristian/",
-    "icon": "bx bxl-linkedin"
-  }
+  "socialmedia":[
+    {
+      "name":"linkedin",
+      "url":"https://www.linkedin.com/in/rcristian/",
+      "icon": "bx bxl-linkedin"
+    },
+    {
+      "name":"skype",
+      "url":"https://join.skype.com/invite/sTg440Lhnz1G",
+      "icon": "bx bxl-skype"
+    },
+    {
+      "name":"facebook",
+      "url":"https://www.linkedin.com/in/rcristian/",
+      "icon": "bx bxl-facebook"
+    }
+  ]
 }

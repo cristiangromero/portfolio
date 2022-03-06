@@ -12,8 +12,9 @@
         <img [src]="myPortfolio.picture" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">{{myPortfolio.name}}</a></h1>
         <div class="social-links mt-3 text-center">
-          <a [href]="myPortfolio.social.url" [class]="myPortfolio.social.name" target="_blank"><i
-              [class]="myPortfolio.social.icon"></i></a>
+          <span *ngFor="let social of redes">
+            <a [href]="social.url" [class]="social.name" target="_blank"><i [class]="social.icon"></i></a>
+          </span>
         </div>
       </div>
   

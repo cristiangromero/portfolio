@@ -8,13 +8,15 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
   styleUrls: ['./head.component.scss']
 })
 export class HeadComponent implements OnInit {
-  myPortfolio:any;
+  myPortfolio:any=[];
+  redes:any;
   constructor(private datosPortfolio:PortfolioService) { }
 
   ngOnInit(): void {
     this.datosPortfolio.getData().subscribe(data =>{
       console.log(data);
       this.myPortfolio=data;
+      this.redes=data.socialmedia;
     });
   }
 
