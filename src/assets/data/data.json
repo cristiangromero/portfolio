@@ -1,6 +1,18 @@
 {
   "picture": "assets/img/profile-img.jpg",
   "name": "Cristian Romero",
+  "birth": "1986-11-30",
+  "email": "rcristian1986@gmail.com",
+  "phone": "+54 376 422 0303",
+  "location":
+    {
+      "city": "Posadas",
+      "state": "Misiones",
+      "country": "Argentina"
+    },
+  "lastgraduate": "Terciario",
+  "civil": "Casado",
+  "children": 2,
   "socialmedia":[
     {
       "name":"linkedin",
@@ -11,11 +23,11 @@
       "name":"skype",
       "url":"https://join.skype.com/invite/sTg440Lhnz1G",
       "icon": "bx bxl-skype"
-    },
-    {
-      "name":"facebook",
-      "url":"https://www.linkedin.com/in/rcristian/",
-      "icon": "bx bxl-facebook"
     }
-  ]
+  ],
+  "iam":"Desarrollador fullstack, Analista de sistemas",
+  "aboutme": "Soy Desarrollador Web y Analista de sistemas, con amplios conocimientos en software, hardware y redes, como así también en la detección y solución de problemas.",
+  "mydescrip": "Me considero una persona proactiva, creativa, capaz de tomar decisiones propias, con predisposición al aprendizaje continuo y al trabajo en equipo.",
+  "mydescrip2": "Realicé mis estudios secundarios en una escuela técnica donde obtuve el título de Técnico en informática y di mis primeros pasos en el mundo del desarrollo, Luego continué con mi formación académica y me gradué como Analista y programador de sistemas. Hoy en día continúo capacitandome para estar a la vanguardia con las nuevas tecnologías vigentes."
+  
 }

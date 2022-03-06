@@ -14,7 +14,6 @@ export class HeadComponent implements OnInit {
 
   ngOnInit(): void {
     this.datosPortfolio.getData().subscribe(data =>{
-      console.log(data);
       this.myPortfolio=data;
       this.redes=data.socialmedia;
     });
