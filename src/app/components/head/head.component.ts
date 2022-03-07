@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { data } from 'jquery';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({

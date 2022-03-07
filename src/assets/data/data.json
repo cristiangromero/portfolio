@@ -122,6 +122,20 @@
       "company":"Electro Misiones SA",
       "description": "Venta y asesoramiento de equipamiento informático, telefonía y redes"
     }
+  ],
+  "language":[
+    {
+      "name":"Español",
+      "percent":"100"
+    },
+    {
+      "name":"Inglés",
+      "percent":"85"
+    },
+    {
+      "name":"Portugués",
+      "percent":"60"
+    }
   ]
   
 }

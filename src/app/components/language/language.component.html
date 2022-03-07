@@ -7,36 +7,16 @@
 
         <div class="row no-gutters">
 
-            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
+            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" *ngFor="let lang of language">
                 <div class="count-box">
                     <i class="bi bi-percent"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="100" data-purecounter-duration="1"
+                    <span data-purecounter-start="0" [attr.data-purecounter-end]="lang.percent" data-purecounter-duration="1"
                         class="purecounter"></span>
-                    <p><strong>Español</strong></p>
+                    <p><strong>{{lang.name}}</strong></p>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
-                <div class="count-box">
-                    <i class="bi bi-percent"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1"
-                        class="purecounter"></span>
-                    <p><strong>Inglés</strong></p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
-                <div class="count-box">
-                    <i class="bi bi-percent"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="60" data-purecounter-duration="1"
-                        class="purecounter"></span>
-                    <p><strong>Portugués</strong></p>
-                </div>
-            </div>
-
-            <a class="bx bx-add-to-queue" href="#">Agregar</a>
 
         </div>
-
+        <a class="bx bx-add-to-queue" href="#">Agregar</a>
     </div>
 </section><!-- End language Section -->
