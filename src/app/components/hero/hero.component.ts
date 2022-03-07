@@ -13,7 +13,6 @@ export class HeroComponent implements OnInit {
 
   ngOnInit(): void {
     this.datosPortfolio.getData().subscribe(data =>{
-      console.log(data);
       this.myPortfolio=data;
     });
   }
