@@ -3,22 +3,13 @@
 
         <div class="section-title">
             <h2>Portfolio <a class="bx bx-edit-alt" href="#"></a></h2>
-            <p>Algunos de los proyectos en los que estuve involucrado</p>
         </div>
 
         <div class="row">
-            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
-                <h4 class="title"><a href="https://mistramites.misiones.gob.ar/login" target="_blank">MISTramites</a>
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" *ngFor="let project of myPortfolio">
+                <h4 class="title"><a [href]="project.url" target="_blank">{{project.title}}</a>
                 </h4>
-                <p class="description">Analista funcional del proyecto. Sistema de gestión de trámites municipales.</p>
-            </div>
-            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-                <h4 class="title"><a href="" target="_blank">Desarrollo web fullstack con Python y JavaScript</a></h4>
-                <p class="description">Polo TIC Misiones - 2021</p>
-            </div>
-            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-                <h4 class="title"><a href="" target="_blank">Introducción al desarrollo web</a></h4>
-                <p class="description">Google - 2020</p>
+                <p class="description">{{project.rol}} - {{project.description}}</p>
             </div>
         </div>
         <a class="bx bx-add-to-queue" href="#">Agregar</a>

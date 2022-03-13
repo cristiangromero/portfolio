@@ -9,13 +9,13 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 })
 export class AboutComponent implements OnInit {
   myPortfolio:any=[];
-  locat:any;
+  location:any;
   constructor(private datosPortfolio:PortfolioService) { }
 
   ngOnInit(): void {
     this.datosPortfolio.getData().subscribe(data =>{
       this.myPortfolio=data;
-      this.locat=data.location;
+      this.location=data.location;
     });
   }
 

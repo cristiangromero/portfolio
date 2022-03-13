@@ -6,21 +6,10 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" *ngFor="let course of courses">
                 <div class="icon"><i class="bi bi-star-fill"></i></div>
-                <h4 class="title"><a href="https://mumuki.io/argentina-programa/certificates/verify/-H9G6MNiZzHIaRfv"
-                        target="_blank">Desarrollo fullstack</a></h4>
-                <p class="description">CESSI - Argentina Programa - 2021</p>
-            </div>
-            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-                <div class="icon"><i class="bi bi-star-fill"></i></div>
-                <h4 class="title"><a href="" target="_blank">Desarrollo web fullstack con Python y JavaScript</a></h4>
-                <p class="description">Polo TIC Misiones - 2021</p>
-            </div>
-            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon"><i class="bi bi-star-fill"></i></div>
-                <h4 class="title"><a href="" target="_blank">Introducción al desarrollo web</a></h4>
-                <p class="description">Google - 2020</p>
+                <h4 class="title"><a [href]="course.url" target="_blank">{{course.title}}</a></h4>
+                <p class="description">{{course.granted}} - {{course.date}}</p>
             </div>
         </div>
 

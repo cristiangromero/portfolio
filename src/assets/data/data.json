@@ -11,6 +11,11 @@
       "name":"skype",
       "url":"https://join.skype.com/invite/sTg440Lhnz1G",
       "icon": "bx bxl-skype"
+    },
+    {
+      "name":"whatsapp",
+      "url":"https://wa.me/qr/UDGKO6SIIKPWF1",
+      "icon": "bx bxl-whatsapp"
     }
   ],
   "iam":"Desarrollador fullstack, Analista de sistemas",
@@ -20,15 +25,13 @@
   "birth": "1986-11-30",
   "email": "rcristian1986@gmail.com",
   "phone": "+54 376 422 0303",
-  "location":[
-    {
+  "location":{
       "street": "Av. Centenario",
       "number": 5326,
       "city": "Posadas",
       "state": "Misiones",
       "country": "Argentina"
-    }
-  ],
+    },
   "lastgraduate": "Terciario",
   "civil": "Casado",
   "children": 2,
@@ -136,6 +139,33 @@
       "name":"Portugués",
       "percent":"60"
     }
+  ],
+  "courses":[
+    {
+      "title":"Desarrollo fullstack",
+      "url":"https://mumuki.io/argentina-programa/certificates/verify/-H9G6MNiZzHIaRfv",
+      "granted":"CESSI - Argentina Programa",
+      "date":"10/2021"
+    },
+    {
+      "title":"Desarrollo web fullstack con Python y JavaScript",
+      "url":"",
+      "granted":"Polo tic Misiones",
+      "date":"08/2021"
+    },
+    {
+      "title":"Introducción al desarrollo web",
+      "url":"",
+      "granted":"Polo tic Misiones",
+      "date":"05/2020"
+    }
+  ],
+  "portfolio":[
+    {
+      "title":"MISTrámites",
+      "url":"https://mistramites.misiones.gob.ar/login",
+      "rol":"Analista funcional",
+      "description":"Sistema de gestión de trámites municipales"
+    }
   ]
-  
 }
