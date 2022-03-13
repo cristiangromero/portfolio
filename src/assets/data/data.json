@@ -87,7 +87,7 @@
   "experience":[
     {
       "title":"Analista Funcional",
-      "expertice": "Semi-Senior",
+      "expertise": "Semi-Senior",
       "dateini":"2022",
       "datefinish":"Presente",
       "company":"DirMOD",
@@ -95,7 +95,7 @@
     },
     {
       "title":"CTO",
-      "expertice": "Senior",
+      "expertise": "Senior",
       "dateini":"2020",
       "datefinish":"2022",
       "company":"Byte Gestión",
@@ -103,7 +103,7 @@
     },
     {
       "title":"Soporte TI",
-      "expertice": "Senior",
+      "expertise": "Senior",
       "dateini":"2018",
       "datefinish":"2020",
       "company":"Byte Gestión",
@@ -111,7 +111,7 @@
     },
     {
       "title":"Técnico Informático",
-      "expertice": "Senior",
+      "expertise": "Senior",
       "dateini":"2014",
       "datefinish":"2018",
       "company":"Electro Misiones SA",
@@ -119,7 +119,7 @@
     },
     {
       "title":"Ejecutivo de ventas",
-      "expertice": "Junior",
+      "expertise": "Junior",
       "dateini":"2011",
       "datefinish":"2014",
       "company":"Electro Misiones SA",
