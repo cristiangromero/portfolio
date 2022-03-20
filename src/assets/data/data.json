@@ -1,0 +1,171 @@
+{
+  "picture": "assets/img/profile-img.jpg",
+  "name": "Cristian Romero",
+  "socialmedia":[
+    {
+      "name":"linkedin",
+      "url":"https://www.linkedin.com/in/rcristian/",
+      "icon": "bx bxl-linkedin"
+    },
+    {
+      "name":"skype",
+      "url":"https://join.skype.com/invite/sTg440Lhnz1G",
+      "icon": "bx bxl-skype"
+    },
+    {
+      "name":"whatsapp",
+      "url":"https://wa.me/qr/UDGKO6SIIKPWF1",
+      "icon": "bx bxl-whatsapp"
+    }
+  ],
+  "iam":"Desarrollador fullstack, Analista de sistemas",
+  "aboutme": "Soy Desarrollador Web y Analista de sistemas, con amplios conocimientos en software, hardware y redes, como así también en la detección y solución de problemas.",
+  "mydescrip": "Me considero una persona proactiva, creativa, capaz de tomar decisiones propias, con predisposición al aprendizaje continuo y al trabajo en equipo.",
+  "mydescrip2": "Realicé mis estudios secundarios en una escuela técnica donde obtuve el título de Técnico en informática y di mis primeros pasos en el mundo del desarrollo, Luego continué con mi formación académica y me gradué como Analista y programador de sistemas. Hoy en día continúo capacitandome para estar a la vanguardia con las nuevas tecnologías vigentes.",
+  "birth": "1986-11-30",
+  "email": "rcristian1986@gmail.com",
+  "phone": "+54 376 422 0303",
+  "location":{
+      "street": "Av. Centenario",
+      "number": 5326,
+      "city": "Posadas",
+      "state": "Misiones",
+      "country": "Argentina"
+    },
+  "lastgraduate": "Terciario",
+  "civil": "Casado",
+  "children": 2,
+  "skills":[
+    {
+      "name":"HTML",
+      "percent":100
+    },
+    {
+      "name":"CSS",
+      "percent":90
+    },
+    {
+      "name":"JavaScript",
+      "percent":75
+    },
+    {
+      "name":"SQL",
+      "percent":95
+    },
+    {
+      "name":"PHP",
+      "percent":80
+    },
+    {
+      "name":"Python",
+      "percent":60
+    },
+    {
+      "name":"Java",
+      "percent":55
+    }
+  ],
+  "resume":"Innovador, proactivo, con mas de 5 años trabajando en sistemas y mas de 10 en el mundo informático.",
+  "education":[
+    {
+      "title":"Programación y Análisis de sistemas",
+      "dateini":"2005",
+      "datefinish":"2010",
+      "school":"Fundación INCADE",
+      "level": "Terciario",
+      "status":"Graduado"
+    },
+    {
+      "title":"Técnico en Informática",
+      "dateini":"1999",
+      "datefinish":"2004",
+      "school":"EPET N1 UNESCO",
+      "level": "Secundario",
+      "status": "Graduado"
+    }
+  ],
+  "experience":[
+    {
+      "title":"Analista Funcional",
+      "expertise": "Semi-Senior",
+      "dateini":"2022",
+      "datefinish":"Presente",
+      "company":"DirMOD",
+      "description": "Relevamiento, análisis y diseño de sistemas. Clasificar, priorizar y validar los requerimientos de los usuarios. Help desk técnico y funcional."
+    },
+    {
+      "title":"CTO",
+      "expertise": "Senior",
+      "dateini":"2020",
+      "datefinish":"2022",
+      "company":"Byte Gestión",
+      "description": "Coordinación y gestión de servicios, Coordinación de equipo, análisis y soporte técnico-funcional de sistemas ERP, SQL query y desarrollos Java."
+    },
+    {
+      "title":"Soporte TI",
+      "expertise": "Senior",
+      "dateini":"2018",
+      "datefinish":"2020",
+      "company":"Byte Gestión",
+      "description": "Análisis y soporte técnico funcional de sistemas ERP, SQL query y desarrollos Java"
+    },
+    {
+      "title":"Técnico Informático",
+      "expertise": "Senior",
+      "dateini":"2014",
+      "datefinish":"2018",
+      "company":"Electro Misiones SA",
+      "description": "Reparación de equipos informáticos, diseño e instalación de redes, gestión de proyectos"
+    },
+    {
+      "title":"Ejecutivo de ventas",
+      "expertise": "Junior",
+      "dateini":"2011",
+      "datefinish":"2014",
+      "company":"Electro Misiones SA",
+      "description": "Venta y asesoramiento de equipamiento informático, telefonía y redes"
+    }
+  ],
+  "language":[
+    {
+      "name":"Español",
+      "percent":"100"
+    },
+    {
+      "name":"Inglés",
+      "percent":"85"
+    },
+    {
+      "name":"Portugués",
+      "percent":"60"
+    }
+  ],
+  "courses":[
+    {
+      "title":"Desarrollo fullstack",
+      "url":"https://mumuki.io/argentina-programa/certificates/verify/-H9G6MNiZzHIaRfv",
+      "granted":"CESSI - Argentina Programa",
+      "date":"10/2021"
+    },
+    {
+      "title":"Desarrollo web fullstack con Python y JavaScript",
+      "url":"",
+      "granted":"Polo tic Misiones",
+      "date":"08/2021"
+    },
+    {
+      "title":"Introducción al desarrollo web",
+      "url":"",
+      "granted":"Polo tic Misiones",
+      "date":"05/2020"
+    }
+  ],
+  "portfolio":[
+    {
+      "title":"MISTrámites",
+      "url":"https://mistramites.misiones.gob.ar/login",
+      "rol":"Analista funcional",
+      "description":"Sistema de gestión de trámites municipales"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+<section id="skills" class="skills section-bg">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Skills <a class="bx bx-edit-alt" href="#"></a></h2>
+        </div>
+
+        <div class="row skills-content">
+
+            <div class="col-lg-6" data-aos="fade-up" *ngFor="let skill of myPortfolio">
+
+                <div class="progress">
+                    <span class="skill">{{skill.name}} <i class="val">{{skill.percent}}%</i></span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="skill.percent" aria-valuemin="0"
+                            aria-valuemax="100">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <a class="bx bx-add-to-queue" href="#">Agregar</a>
+        </div>
+
+    </div>
+</section>

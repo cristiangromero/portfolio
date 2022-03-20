@@ -1,0 +1,18 @@
+<section id="portfolio" class="portfolio section-bg">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Portfolio <a class="bx bx-edit-alt" href="#"></a></h2>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" *ngFor="let project of myPortfolio">
+                <h4 class="title"><a [href]="project.url" target="_blank">{{project.title}}</a>
+                </h4>
+                <p class="description">{{project.rol}} - {{project.description}}</p>
+            </div>
+        </div>
+        <a class="bx bx-add-to-queue" href="#">Agregar</a>
+    </div>
+
+</section>
