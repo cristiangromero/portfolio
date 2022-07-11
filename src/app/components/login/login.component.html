@@ -1,33 +1,23 @@
-<div class="form-signin">
-    <form [formGroup]="form">
-        <h1 class="h3 mb-3 fw-normal icon">Ingrese sus credenciales</h1>
-        <div class="form-floating">
-            <input type="email" class="form-control" formControlName="email" id="floatingInput" placeholder="name@example.com"
-            [ngClass]="{'is-invalid': Email?.errors && Email?.touched, 'is-valid': !Email?.errors && Email?.touched}">
-            <label for="floatingInput">Email</label>
-            <div *ngIf="Email?.errors && Email?.touched">
-                <p *ngIf="Email?.hasError('required')" class="text-danger">
-                    El email es requerido.
-                </p>
-                <p *ngIf="Email?.hasError('email')" class="text-danger">
-                    El formato del email es incorrecto.
-                </p>
-            </div>
-        </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" formControlName="password" id="floatingPassword" placeholder="Password"
-            [ngClass]="{'is-invalid': Password?.errors && Password?.touched, 'is-valid': !Password?.errors && Password?.touched}">
-            <label for="floatingPassword">Password</label>
-            <div *ngIf="Password?.errors && Password?.touched">
-                <p *ngIf="Password?.hasError('required')" class="text-danger">
-                    La contraseña es requerida.
-                </p>
-                <p *ngIf="Password?.errors?.['minlength']" class="text-danger">
-                    La contraseña debe tener al menos 8 caracteres.
-                </p>
-            </div>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
-        <p class="mt-5 mb-3 text-muted">Portforlio</p>
-    </form>
-</div>
+<div class="container col-lg-6">
+    <h1 class="text-center">Login</h1>
+    <p class="mt-5 mb-3 text-muted">Portforlio Cristian Romero</p>
+    <div class="card">
+      <div class="form-signin">
+        <form class="form-group">
+          <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+          <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
+          <div class="form-group">
+            <label for="email">Nombre de Usuario :</label>
+            <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Ingrese nombre de usuario"
+              name="username">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Ingrese password"
+              name="password">
+          </div>
+          <button (click)=handleLogin() class="w-100 btn btn-lg btn-primary">Iniciar Sesión</button>
+        </form>
+      </div>
+    </div>
+  </div>

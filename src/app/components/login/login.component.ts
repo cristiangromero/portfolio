@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from './auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,30 +8,32 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form:FormGroup;
-  constructor(private formBuilder:FormBuilder) { 
-    this.form=this.formBuilder.group(
-      {
-        email:['',[Validators.required,Validators.email]],
-        password:['',[Validators.required,Validators.minLength(8)]],
-        deviceInfo:this.formBuilder.group({
-          deviceId: ["17867868768"],
-          deviceType: ["DEVICE_TYPE_ANDROID"],
-          notificationToken: ["67657575eececc34"]
-        })
-      }
-    )
+
+  username: string;
+  password : string;
+  errorMessage = 'Credenciales Inválidas';
+  successMessage: string;
+  invalidLogin = false;
+  loginSuccess = false;
+
+  constructor(    
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService) { }
+
+  ngOnInit(){
   }
 
-  ngOnInit(): void {
-  }
-
-  get Email(){
-    return this.form.get('email');
-  }
-
-  get Password(){
-    return this.form.get('password')
+  handleLogin() {
+    this.authenticationService.authenticationService(this.username, this.password).subscribe((result)=> {
+      this.invalidLogin = false;
+      this.loginSuccess = true;
+      this.successMessage = 'Login Correcto.';
+      this.router.navigate(['/home']);
+    }, () => {
+      this.invalidLogin = true;
+      this.loginSuccess = false;
+    });      
   }
 
 }
