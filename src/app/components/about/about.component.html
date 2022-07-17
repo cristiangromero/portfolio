@@ -2,7 +2,7 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>About <a class="bx bx-edit-alt" href="#"></a></h2>
+        <h2>About <a class="bx bx-edit-alt" href="#" *ngIf= "loggedIn()"></a></h2>
         <p>{{myPortfolio.aboutme}}</p>
         <p>{{myPortfolio.mydescrip}}</p>
         <p>{{myPortfolio.mydescrip2}}</p>

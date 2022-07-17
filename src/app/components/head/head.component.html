@@ -15,6 +15,7 @@
           <span *ngFor="let social of redes">
             <a [href]="social.url" [class]="social.name" target="_blank"><i [class]="social.icon"></i></a>
           </span>
+          <a class="bx bx-edit-alt" href="#" *ngIf= "loggedIn()"></a>
         </div>
       </div>
   

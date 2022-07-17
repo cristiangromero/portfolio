@@ -1,7 +1,9 @@
 <footer id="footer">
     <div class="container">
         <div class="copyright">
-            <a class="nav-link" href="login"><i class="bx bx-user">Login</i></a>
+            <div *ngIf= "loggedIn(); then thenBlock; else elseBlock"></div>
+            <ng-template #thenBlock><a class="nav-link" href="home" (click)= logOut()><i class="bx bx-user">Logout</i></a></ng-template>
+            <ng-template #elseBlock><a class="nav-link" href="login"><i class="bx bx-user">Login</i></a></ng-template>
             &copy; Cristian Romero <strong><span>2022</span></strong> 
         </div>
     </div>

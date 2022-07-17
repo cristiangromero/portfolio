@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { data } from 'jquery';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { DatePipe } from '@angular/common'
+import { AuthenticationService } from '../login/auth.service';
 
 @Component({
   selector: 'app-about',
@@ -10,13 +12,17 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class AboutComponent implements OnInit {
   myPortfolio:any=[];
   location:any;
-  constructor(private datosPortfolio:PortfolioService) { }
+  constructor(private datosPortfolio:PortfolioService, private loggedService:AuthenticationService) { }
 
   ngOnInit(): void {
     this.datosPortfolio.getData().subscribe(data =>{
       this.myPortfolio=data;
       this.location=data.location;
     });
+  }
+
+  loggedIn(){
+    return this.loggedService.isUserLoggedIn();
   }
 
   CalculateAge(): any {

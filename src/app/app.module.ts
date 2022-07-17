@@ -20,7 +20,6 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpInterceptorService } from './httpInterceptor.service';
-import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +35,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     ContactComponent,
     FooterComponent,
     LoginComponent,
-    HomeComponent,
-    LogoutComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
