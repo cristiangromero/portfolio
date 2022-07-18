@@ -10,7 +10,7 @@
   
       <div class="profile">
         <img [src]="myPortfolio.picture" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">{{myPortfolio.name}}</a></h1>
+        <h1 class="text-light"><a href="index.html">{{myPortfolio.name}} {{myPortfolio.surname}}</a></h1>
         <div class="social-links mt-3 text-center">
           <span *ngFor="let social of redes">
             <a [href]="social.url" [class]="social.name" target="_blank"><i [class]="social.icon"></i></a>

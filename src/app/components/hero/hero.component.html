@@ -1,6 +1,6 @@
 <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
   <div class="hero-container" data-aos="fade-in">
-    <h1>{{myPortfolio.name}} <a class="bx bx-edit-alt" href="#" *ngIf= "loggedIn()"></a></h1>
+    <h1>{{myPortfolio.name}} {{myPortfolio.surname}}<a class="bx bx-edit-alt" href="#" *ngIf= "loggedIn()"></a></h1>
     <p>
       Soy <span class="typed" [attr.data-typed-items]="myPortfolio.iam"></span>
     </p>
