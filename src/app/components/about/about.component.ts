@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { data } from 'jquery';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { DatePipe } from '@angular/common'
-import { AuthenticationService } from '../login/auth.service';
+import { AuthenticationService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-about',
