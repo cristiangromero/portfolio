@@ -16,8 +16,10 @@ export class HttpInterceptorService implements HttpInterceptor {
                     'Authorization': `Basic ${window.btoa(this.authenticationService.username + ":" + this.authenticationService.password)}`
                 })
             });
+            console.log('request header: '+authReq.headers.get('Authorization'));
             return next.handle(authReq);
         } else {
+            console.log('request header: '+req.headers.get('Authorization'));
             return next.handle(req);
         }
     }
