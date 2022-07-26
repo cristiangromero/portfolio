@@ -26,8 +26,16 @@ export class HeadService {
     return this.http.get<SocialMedia[]>(this.url+"socialmedia/");
   }
 
-  public updateSocialMedia(socialMedia:Person):Observable<SocialMedia>{
+  public updateSocialMedia(socialMedia:SocialMedia):Observable<SocialMedia>{
     return this.http.put<SocialMedia>(this.url+"socialmedia/",socialMedia);
+  }
+
+  public addSocialMedia(socialMedia:SocialMedia):Observable<SocialMedia>{
+    return this.http.post<SocialMedia>(this.url+"socialmedia/",socialMedia);
+  }
+
+  public deleteSocialMedia(socialMediaId:number):Observable<void>{
+    return this.http.delete<void>(this.url+"socialmedia/"+socialMediaId);
   }
 
 }
