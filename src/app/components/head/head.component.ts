@@ -6,7 +6,6 @@ import { Person } from 'src/app/models/person';
 import { SocialMedia } from 'src/app/models/SocialMedia';
 import { HeadService } from 'src/app/services/head.service';
 import { AuthenticationService } from '../../services/auth.service';
-import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-head',
@@ -36,6 +35,7 @@ export class HeadComponent implements OnInit {
     this.socialMediaList.push(new SocialMediaClass("whatsapp","bx bxl-whatsapp"));
     this.socialMediaList.push(new SocialMediaClass("skype","bx bxl-skype"));
     this.socialMediaList.push(new SocialMediaClass("facebook","bx bxl-facebook"));
+    
     }
 
   public getPerson():void{
@@ -61,10 +61,13 @@ export class HeadComponent implements OnInit {
   }
 
   public onAddSocialMedia(addForm: NgForm){
+    addForm.value.icon="bx bxl-"+addForm.value.description;
+    addForm.value.person= this.person;
+    console.log(addForm.value);
     document.getElementById('add-socialmedia-form')?.click();
     this.headService.addSocialMedia(addForm.value).subscribe({
       next: (Response:SocialMedia) =>{
-        console.log(Response)
+        console.log(Response);
         this.getSocialMedia();
         addForm.reset();
       },

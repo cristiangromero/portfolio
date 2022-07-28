@@ -13,5 +13,5 @@ export interface Person{
     avatar:string;
     iam:string;
     aboutme:string;
-    socialMedia:Array<SocialMedia>;
+    socials:Array<SocialMedia>;
 }
