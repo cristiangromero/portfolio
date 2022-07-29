@@ -8,8 +8,8 @@
         <div *ngIf="loggedIn(); then thenBlock; else elseBlock"></div>
         <ng-template #thenBlock>
           <span *ngFor="let socials of social">
-            <a><i [class]="socials.icon"></i><i class="bx bx-edit-alt"></i></a>
-            <a><i [class]="socials.icon"></i><i class="bx bx-trash"></i></a>
+            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addSocialMediaModal" (click)="onOpenModal('edit',socials)" data-whatever="Editar red social"><i [class]="socials.icon"></i><i class="bx bx-edit-alt"></i></a>
+            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delSocialMediaModal" (click)="onOpenModal('delete',socials)" data-whatever="Eliminar red social"><i [class]="socials.icon"></i><i class="bx bx-trash"></i></a>
           </span>
         </ng-template>
         <ng-template #elseBlock>
@@ -18,7 +18,7 @@
           </span>
         </ng-template>
         <span>
-          <a href="javascript:void(0);" *ngIf="loggedIn()" data-bs-toggle="modal" data-bs-target="#addSocialMediaModal" ><i class="bx bx-add-to-queue"></i></a>
+          <a href="javascript:void(0);" *ngIf="loggedIn()" data-bs-toggle="modal" data-bs-target="#addSocialMediaModal" data-whatever="Agregar red social"><i class="bx bx-add-to-queue"></i></a>
         </span>
       </div>
     </div>
@@ -39,31 +39,54 @@
   <!-- ======= Footer ======= -->
   <app-footer></app-footer>
 </header>
-<!-- ======= Modal editar ======= -->
+<!-- ======= Modal add ======= -->
 <div class="modal fade" id="addSocialMediaModal" tabindex="-1" role="dialog" aria-labelledby="addSocialMediaModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addSocialMediaModalLabel">Agregar Red Social</h5>
+        <h5 class="modal-title" id="addSocialMediaModalLabel">Redes Sociales</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
         <form #addForm="ngForm">
           <div class="form-group">
             <label for="description" class="col-form-label">Red Social:</label>
-            <select name="description" id="description" class="form-select" [(ngModel)]="selected" >
-              <option *ngFor="let objeto of socialMediaList" [ngValue]="objeto.description" >{{objeto.description}}</option>
+            <select name="description" id="description" class="form-select" (ngModel)="ngSelected" >
+              <option *ngFor="let objeto of socialMediaList" [ngValue]="objeto.description" [selected]="objeto.description === editSocial?.description" >{{objeto.description}}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="url" class="col-form-label">Url:</label>
-            <input type="text" ngModel name="url" class="form-control" id="url" required>
+            <input type="text" ngModel name="url" class="form-control" id="url" required [value]="editSocial?.url">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" id="add-socialmedia-form" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button type="button" [disabled]="addForm.invalid" class="btn btn-primary" (click)="onAddSocialMedia(addForm)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--======= Modal de eliminación =======-->
+<div class="modal fade" id="delSocialMediaModal" tabindex="-1" role="dialog" aria-labelledby="delSocialMediaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delSocialMediaModalLabel">Redes Sociales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p>Está seguro que desea eliminar la red social?</p>
+        <p>
+          {{deleteSocial?.description}}<br>
+          {{deleteSocial?.url}}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="add-socialmedia-form" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="onDeleteSocialMedia(deleteSocial!.idSocialMedia)" data-bs-dismiss="modal">Aceptar</button>
       </div>
     </div>
   </div>
