@@ -1,9 +1,9 @@
 <header id="header">
   <div class="d-flex flex-column" *ngIf="person">
 
-    <div class="profile">
-      <img [src]="person.avatar" alt="" class="img-fluid rounded-circle">
-      <h1 class="text-light"><a href="index.html">{{person.name}} {{person.surname}}</a></h1>
+    <div class="profile">  
+      <img [src]="person.avatar" alt="" class="img-fluid rounded-circle">        
+      <h1 class="text-light"><a>{{person.name}} {{person.surname}}</a></h1>
       <div class="social-links mt-3 text-center">
         <div *ngIf="loggedIn(); then thenBlock; else elseBlock"></div>
         <ng-template #thenBlock>

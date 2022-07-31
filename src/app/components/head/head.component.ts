@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SocialMediaClass } from 'src/app/classes/SocialMediaClass';
-import { Person } from 'src/app/models/person';
+import { Person } from 'src/app/models/Person';
 import { SocialMedia } from 'src/app/models/SocialMedia';
 import { HeadService } from 'src/app/services/head.service';
 import { AuthenticationService } from '../../services/auth.service';

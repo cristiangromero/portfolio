@@ -1,23 +1,10 @@
 <section id="resume" class="resume">
     <div class="container">
-
         <div class="section-title">
-            <h2>Curriculum <a class="bx bx-edit-alt" href="#" *ngIf= "loggedIn()"></a></h2>
+            <h2>Curriculum</h2>
         </div>
-
         <div class="row">
             <div class="col-lg-6" data-aos="fade-up">
-            <!--<h3 class="resume-title">Resumen</h3>
-                <div class="resume-item pb-0">
-                    <h4>{{myPortfolio.name}}</h4>
-                    <p><em>{{myPortfolio.resume}}</em></p>
-                    <ul *ngFor="let loc of locat">
-                        <li>{{loc.city}}, {{loc.state}}, {{loc.country}}</li>
-                        <li>{{myPortfolio.phone}}</li>
-                        <li>{{myPortfolio.email}}</li>
-                    </ul>
-                </div> -->
-
                 <h3 class="resume-title">Educación</h3>
                 <div *ngFor="let edu of education">
                     <div class="resume-item">
@@ -26,8 +13,8 @@
                         <p><em>{{edu.school}}</em></p>
                         <p>{{edu.level}} - {{edu.status}}</p>
                     </div>
-                </div>          
-                <a class="bx bx-add-to-queue" href="#" *ngIf= "loggedIn()">Agregar</a>
+                </div>
+                <a class="bx bx-add-to-queue" href="#" *ngIf="loggedIn()">Agregar</a>
             </div>
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                 <h3 class="resume-title">Experiencia profesional</h3>
@@ -41,7 +28,7 @@
                         </p>
                     </div>
                 </div>
-                <a class="bx bx-add-to-queue" href="#" *ngIf= "loggedIn()">Agregar</a>
+                <a class="bx bx-add-to-queue" href="#" *ngIf="loggedIn()">Agregar</a>
             </div>
         </div>
 
