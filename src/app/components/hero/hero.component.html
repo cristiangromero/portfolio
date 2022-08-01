@@ -1,6 +1,8 @@
 <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="hero-container" data-aos="fade-in">
-      <h1>{{myPortfolio.name}}<a class="bx bx-edit-alt" href="#"></a></h1>
-      <p>Soy <span class="typed" [attr.data-typed-items]="myPortfolio.iam"></span></p>
-    </div>
-  </section>
+  <div class="hero-container" data-aos="fade-in" *ngIf="person">
+    <h1>{{person.name}} {{person.surname}}</h1>
+    <p>
+      Soy <span class="typed" [attr.data-typed-items]="person.iam"></span>
+    </p>
+  </div>
+</section>

@@ -1,45 +1,118 @@
-    <section id="about" class="about">
-    <div class="container">
+<section id="about" class="about">
+  <div class="container" *ngIf="person">
 
-      <div class="section-title">
-        <h2>About <a class="bx bx-edit-alt" href="#"></a></h2>
-        <p>{{myPortfolio.aboutme}}</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-4" data-aos="fade-right">
-          <img [src]="myPortfolio.picture" class="img-fluid" alt="">
-        </div>
-        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>{{myPortfolio.iam}}</h3>
-          <p class="fst-italic">
-            {{myPortfolio.mydescrip}}
-          </p>
-          <div class="row">
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Fecha de nacimiento:</strong> <span>{{myPortfolio.birth | date:'dd/MM/yyyy'}}</span>
-                </li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{myPortfolio.email}}</span>
-                </li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Teléfono:</strong> <span>{{myPortfolio.phone}}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Locación:</strong> <span>{{location.city}}, {{location.state}}, {{location.country}}</span></li>
-              </ul>
-            </div>
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Edad:</strong> <span>{{CalculateAge()}}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Educación:</strong> <span>{{myPortfolio.lastgraduate}}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Estadi Civil:</strong> <span>{{myPortfolio.civil}}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Hijos:</strong> <span>{{myPortfolio.children}}</span></li>
-              </ul>
-            </div>
-          </div>
-          <p>
-            {{myPortfolio.mydescrip2}}
-          </p>
-        </div>
-      </div>
-
+    <div class="section-title">
+      <h2>About {{person.name}} {{person.surname}} <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#editPersonModal" (click)="onOpenAboutModal(person)" data-whatever="Editar persona" *ngIf="loggedIn()"><i class="bx bx-edit-alt"></i></a></h2>      
+      <p>{{person.aboutme}}</p>
+<!--  <p>{{person.mydescrip}}</p>
+      <p>{{person.mydescrip2}}</p> -->
     </div>
-  </section>
+
+    <div class="row">
+      <div class="col-lg-4" data-aos="fade-right">
+        <img [src]="person.avatar" class="img-fluid" alt="">
+      </div>
+      <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+        <h3>{{person.iam}}</h3>
+        <div class="row">
+          <div class="col-lg-6">
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <strong>Fecha de nacimiento:</strong> <span>{{person.birth |
+                  date:'dd/MM/yyyy'}}</span>
+              </li>
+              <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{person.email}}</span>
+              </li>
+              <li><i class="bi bi-chevron-right"></i> <strong>Teléfono:</strong> <span>{{person.phone}}</span></li>
+              <li><i class="bi bi-chevron-right"></i> <strong>Locación:</strong> <span>{{person.address}}</span>
+                <!-- <span>{{location.city}}, {{location.state}}, {{location.country}}</span></li> -->
+                <!--  </ul>
+            </div>
+            <div class="col-lg-6">
+              <ul> -->
+              <li><i class="bi bi-chevron-right"></i> <strong>Edad:</strong> <span>{{CalculateAge()}}</span></li>
+              <li><i class="bi bi-chevron-right"></i> <strong>Educación:</strong> <span>{{person.lastGraduation}}</span></li>
+              <li><i class="bi bi-chevron-right"></i> <strong>Estadi Civil:</strong> <span>{{person.civil}}</span></li>
+              <li><i class="bi bi-chevron-right"></i> <strong>Hijos:</strong> <span>{{person.children}}</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======= Modal add ======= -->
+<div class="modal fade" id="editPersonModal" tabindex="-1" role="dialog" aria-labelledby="editPersonLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editPersonLabel">Editar persona</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm">
+          <div class="form-group">
+            <label for="name" class="col-form-label">Nombre:</label>
+            <input type="text" ngModel name="name" class="form-control" id="name" required [value]="editPerson?.name">
+          </div>
+          <div class="form-group">
+            <label for="surname" class="col-form-label">Apellido:</label>
+            <input type="text" ngModel name="surname" class="form-control" id="surname" required [value]="editPerson?.surname">
+          </div>
+          <div class="form-group">
+            <label for="avatar" class="col-form-label">Url de foto:</label>
+            <input type="text" ngModel name="avatar" class="form-control" id="avatar" [value]="editPerson?.avatar">
+          </div>
+          <div class="form-group">
+            <label for="birth" class="col-form-label">Fecha de nacimiento:</label>
+            <input type="date" ngModel name="birth" class="form-control" id="birth" [value]="editPerson?.birth">
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-form-label">E-mail:</label>
+            <input type="email" ngModel name="email" class="form-control" id="email" [value]="editPerson?.email">
+          </div>
+          <div class="form-group">
+            <label for="phone" class="col-form-label">Teléfono:</label>
+            <input type="tel" ngModel name="phone" class="form-control" id="phone" [value]="editPerson?.phone">
+          </div>
+          <div class="form-group">
+            <label for="address" class="col-form-label">Dirección:</label>
+            <input type="text" ngModel name="address" class="form-control" id="address" [value]="editPerson?.address">
+          </div>
+          <div class="form-group">
+            <label for="lastGraduation" class="col-form-label">Educación:</label>
+            <select name="lastGraduation" id="lastGraduation" class="form-select" (ngModel)="graduateSelect">
+              <option *ngFor="let objeto of graduateList" [ngValue]="objeto.description"
+                [selected]="objeto.description == editPerson?.lastGraduation ">{{objeto.description}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="civil" class="col-form-label">Estado civil:</label>
+            <select name="civil" id="civil" class="form-select" (ngModel)="civilSelect">
+              <option *ngFor="let objeto of civilList" [ngValue]="objeto.description"
+                [selected]="objeto.description == editPerson?.civil ">{{objeto.description}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="children" class="col-form-label">Hijos:</label>
+            <input type="number" ngModel name="children" class="form-control" id="children" [value]="editPerson?.children">
+          </div>
+          <div class="form-group">
+            <label for="aboutme" class="col-form-label">Mi descripción:</label>
+            <textarea ngModel name="aboutme" class="form-control" id="aboutme" required [value]="editPerson?.aboutme"></textarea>            
+          </div>
+          <div class="form-group">
+            <label for="iam" class="col-form-label">Soy (separar con comas las cualidades):</label>
+            <input type="text" ngModel name="iam" class="form-control" id="iam" [value]="editPerson?.iam">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="edit-person-form" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="onEditPerson(editForm)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

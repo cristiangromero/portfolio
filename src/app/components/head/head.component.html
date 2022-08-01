@@ -1,37 +1,93 @@
 <header id="header">
+  <div class="d-flex flex-column" *ngIf="person">
 
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bx bx-user">Login</i></a>
-      </li>
-    </ul>
-  
-    <div class="d-flex flex-column">
-  
-      <div class="profile">
-        <img [src]="myPortfolio.picture" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">{{myPortfolio.name}}</a></h1>
-        <div class="social-links mt-3 text-center">
-          <span *ngFor="let social of redes">
-            <a [href]="social.url" [class]="social.name" target="_blank"><i [class]="social.icon"></i></a>
+    <div class="profile">  
+      <img [src]="person.avatar" alt="" class="img-fluid rounded-circle">        
+      <h1 class="text-light"><a>{{person.name}} {{person.surname}}</a></h1>
+      <div class="social-links mt-3 text-center">
+        <div *ngIf="loggedIn(); then thenBlock; else elseBlock"></div>
+        <ng-template #thenBlock>
+          <span *ngFor="let socials of social">
+            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addSocialMediaModal" (click)="onOpenModal('edit',socials)" data-whatever="Editar red social"><i [class]="socials.icon"></i><i class="bx bx-edit-alt"></i></a>
+            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delSocialMediaModal" (click)="onOpenModal('delete',socials)" data-whatever="Eliminar red social"><i [class]="socials.icon"></i><i class="bx bx-trash"></i></a>
           </span>
-        </div>
+        </ng-template>
+        <ng-template #elseBlock>
+          <span *ngFor="let socials of social">
+            <a [href]="socials.url" [class]="socials.description" target="_blank"><i [class]="socials.icon"></i></a>
+          </span>
+        </ng-template>
+        <span>
+          <a href="javascript:void(0);" *ngIf="loggedIn()" data-bs-toggle="modal" data-bs-target="#addSocialMediaModal" data-whatever="Agregar red social"><i class="bx bx-add-to-queue"></i></a>
+        </span>
       </div>
-  
-      <nav id="navbar" class="nav-menu navbar">
-        <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-bar-chart-alt-2"></i> <span>Skills</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Curriculum</span></a>
-          </li>
-          <li><a href="#language" class="nav-link scrollto"><i class="bx bx-flag"></i> <span>Idiomas</span></a></li>
-          <li><a href="#courses" class="nav-link scrollto"><i class="bx bx-medal"></i> <span>Cursos y
-                Certificaciones</span></a></li>
-          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a>
-          </li>
-          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contacto</span></a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
     </div>
-  </header>
+
+    <nav id="navbar" class="nav-menu navbar">
+      <ul>
+        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+        <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-bar-chart-alt-2"></i> <span>Skills</span></a></li>
+        <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Curriculum</span></a></li>
+        <li><a href="#language" class="nav-link scrollto"><i class="bx bx-flag"></i> <span>Idiomas</span></a></li>
+        <li><a href="#courses" class="nav-link scrollto"><i class="bx bx-medal"></i> <span>Cursos y Certificaciones</span></a></li>
+        <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contacto</span></a></li>      
+      </ul>
+    </nav><!-- .nav-menu -->
+  </div>
+  <!-- ======= Footer ======= -->
+  <app-footer></app-footer>
+</header>
+<!-- ======= Modal add ======= -->
+<div class="modal fade" id="addSocialMediaModal" tabindex="-1" role="dialog" aria-labelledby="addSocialMediaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addSocialMediaModalLabel">Redes Sociales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm">
+          <div class="form-group">
+            <label for="description" class="col-form-label">Red Social:</label>
+            <select name="description" id="description" class="form-select" (ngModel)="ngSelected" >
+              <option *ngFor="let objeto of socialMediaList" [ngValue]="objeto.description" [selected]="objeto.description === editSocial?.description" >{{objeto.description}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="url" class="col-form-label">Url:</label>
+            <input type="text" ngModel name="url" class="form-control" id="url" required [value]="editSocial?.url">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="add-socialmedia-form" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" [disabled]="addForm.invalid" class="btn btn-primary" (click)="onAddSocialMedia(addForm)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--======= Modal de eliminación =======-->
+<div class="modal fade" id="delSocialMediaModal" tabindex="-1" role="dialog" aria-labelledby="delSocialMediaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delSocialMediaModalLabel">Redes Sociales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p>Está seguro que desea eliminar la red social?</p>
+        <p>
+          {{deleteSocial?.description}}<br>
+          {{deleteSocial?.url}}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="add-socialmedia-form" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="onDeleteSocialMedia(deleteSocial!.idSocialMedia)" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

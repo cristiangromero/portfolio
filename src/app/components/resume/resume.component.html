@@ -1,49 +1,234 @@
 <section id="resume" class="resume">
     <div class="container">
-
         <div class="section-title">
-            <h2>Curriculum <a class="bx bx-edit-alt" href="#"></a></h2>
+            <h2>Curriculum</h2>
         </div>
-
         <div class="row">
             <div class="col-lg-6" data-aos="fade-up">
-                <h3 class="resume-title">Resumen</h3>
-                <div class="resume-item pb-0">
-                    <h4>{{myPortfolio.name}}</h4>
-                    <p><em>{{myPortfolio.resume}}</em></p>
-                    <ul *ngFor="let loc of locat">
-                        <li>{{loc.city}}, {{loc.state}}, {{loc.country}}</li>
-                        <li>{{myPortfolio.phone}}</li>
-                        <li>{{myPortfolio.email}}</li>
-                    </ul>
-                </div>
-
                 <h3 class="resume-title">Educación</h3>
                 <div *ngFor="let edu of education">
                     <div class="resume-item">
                         <h4>{{edu.title}}</h4>
-                        <h5>{{edu.dateini}} - {{edu.datefinish}}</h5>
+                        <h5>{{edu.dateini}}</h5><h5>|</h5>
+                        <div *ngIf="edu.currentStudy; then thenBlock; else elseBlock"></div>
+                        <ng-template #thenBlock> <h5>Presente</h5></ng-template>
+                        <ng-template #elseBlock> <h5>{{edu.datefinish}}</h5></ng-template>                                               
                         <p><em>{{edu.school}}</em></p>
-                        <p>{{edu.level}} - {{edu.status}}</p>
+                        <p>{{edu.studyLevel}}</p>
                     </div>
-                </div>          
-                <a class="bx bx-add-to-queue" href="#">Agregar</a>
+                    <div *ngIf="loggedIn()">
+                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addEducationModal"
+                            (click)="onOpenModalEducation('edit',edu)" data-whatever="Editar Educación"><i
+                                class="bx bx-edit-alt"></i></a>
+                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delEducationModal"
+                            (click)="onOpenModalEducation('delete',edu)" data-whatever="Eliminar Educación"><i
+                                class="bx bx-trash"></i></a>
+                    </div>
+                </div>
+                <a href="javascript:void(0);" *ngIf="loggedIn()" data-bs-toggle="modal"
+                    data-bs-target="#addEducationModal" data-whatever="Agregar Educación"><i
+                        class="bx bx-add-to-queue">Agregar</i></a>
             </div>
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                 <h3 class="resume-title">Experiencia profesional</h3>
                 <div *ngFor="let exp of experience">
                     <div class="resume-item">
                         <h4>{{exp.title}} {{exp.expertise}}</h4>
-                        <h5>{{exp.dateini}} - {{exp.datefinish}}</h5>
+                        <h5>{{exp.dateini}}</h5><h5>|</h5>
+                        <div *ngIf="exp.currentJob; then thenBlock; else elseBlock"></div>
+                        <ng-template #thenBlock> <h5>Actualmente trabajo aquí</h5></ng-template>
+                        <ng-template #elseBlock> <h5>{{exp.datefinish}}</h5></ng-template>                       
                         <p><em>{{exp.company}}</em></p>
                         <p>
                             {{exp.description}}
                         </p>
                     </div>
+                    <div *ngIf="loggedIn()">
+                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addExperienceModal"
+                            (click)="onOpenModalExperience('edit',exp)" data-whatever="Editar Experiencia"><i
+                                class="bx bx-edit-alt"></i></a>
+                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delExperienceModal"
+                            (click)="onOpenModalExperience('delete',exp)" data-whatever="Eliminar Experiencia"><i
+                                class="bx bx-trash"></i></a>
+                    </div>
                 </div>
-                <a class="bx bx-add-to-queue" href="#">Agregar</a>
+                <a href="javascript:void(0);" *ngIf="loggedIn()" data-bs-toggle="modal"
+                    data-bs-target="#addExperienceModal" data-whatever="Agregar Experiencia"><i
+                        class="bx bx-add-to-queue">Agregar</i></a>
             </div>
         </div>
-
     </div>
 </section>
+
+<!-- ======= Modal add ======= -->
+<div class="modal fade" id="addEducationModal" tabindex="-1" role="dialog" aria-labelledby="addEducationLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEducationModalLabel">Education</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form #educationForm="ngForm">
+                    <div class="form-group">
+                        <label for="title" class="col-form-label">Título:</label>
+                        <input type="text" ngModel name="title" class="form-control" id="title" required
+                            [value]="editEducation?.title">
+                    </div>
+                    <div class="form-group">
+                        <label for="school" class="col-form-label">Institución:</label>
+                        <input type="text" ngModel name="school" class="form-control" id="school" required
+                            [value]="editEducation?.school">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateini" class="col-form-label">Fecha de inicio:</label>
+                        <input type="date" ngModel name="dateini" class="form-control" id="dateini" required
+                            [value]="editEducation?.dateini">
+                    </div>
+                    <div class="form-group">
+                        <label for="datefinish" class="col-form-label">Fecha de finalización:</label>
+                        <input type="date" ngModel name="datefinish" class="form-control" id="datefinish" required
+                            [value]="editEducation?.datefinish">
+                    </div>
+                    <div class="form-group">
+                        <label for="currentStudy" class="col-form-label">Estudio actual: </label> <br>
+                        <label class="switch">
+                            <input type="checkbox" ngModel name="currentStudy" class="form-control" id="currentStudy"
+                                [value]="editEducation?.currentStudy">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="studyLevel" class="col-form-label">Nivel de estudio:</label>
+                        <select name="studyLevel" id="studyLevel" class="form-select" (ngModel)="graduationSelected">
+                            <option *ngFor="let objeto of graduationList" [ngValue]="objeto.description"
+                                [selected]="objeto.description === editEducation?.studyLevel">{{objeto.description}}
+                            </option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="add-education-form" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" [disabled]="educationForm.invalid" class="btn btn-primary"
+                    (click)="onAddEducation(educationForm)">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--======= Modal de eliminación =======-->
+<div class="modal fade" id="delEducationModal" tabindex="-1" role="dialog" aria-labelledby="delEducationModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delEducationLabel">Educación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                        hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Está seguro que desea eliminar la educación?</p>
+                <p>
+                    {{deleteEducation?.title}}<br>
+                    {{deleteEducation?.school}}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="add-education-form" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="onDeleteEducation(deleteEducation!.idEducation)"
+                    data-bs-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======= Modal add ======= -->
+<div class="modal fade" id="addExperienceModal" tabindex="-1" role="dialog" aria-labelledby="addExperienceModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addExperienceModalLabel">Experiencia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                        hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+
+                <form #experienceForm="ngForm">
+                    <div class="form-group">
+                        <label for="title" class="col-form-label">Título:</label>
+                        <input type="text" ngModel name="title" class="form-control" id="title" required [value]="editExperience?.title">
+                    </div>
+                    <div class="form-group">
+                        <label for="expertise" class="col-form-label">Expertise:</label>
+                        <select name="expertise" id="expertise" class="form-select" (ngModel)="expertiseSelected">
+                            <option *ngFor="let objeto of expertiseList" [ngValue]="objeto.description"
+                                [selected]="objeto.description === editExperience?.expertise">{{objeto.description}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="company" class="col-form-label">Empresa:</label>
+                        <input type="text" ngModel name="company" class="form-control" id="company" required [value]="editExperience?.company">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateini" class="col-form-label">Fecha de inicio:</label>
+                        <input type="date" ngModel name="dateini" class="form-control" id="dateini" required [value]="editExperience?.dateini">
+                    </div>
+                    <div class="form-group">
+                        <label for="datefinish" class="col-form-label">Fecha de finalización:</label>
+                        <input type="date" ngModel name="datefinish" class="form-control" id="datefinish" [value]="editExperience?.datefinish">
+                    </div>
+                    <div class="form-group">
+                        <label for="currentJob" class="col-form-label">Empleo actual: </label> <br>
+                        <label class="switch">
+                            <input type="checkbox" ngModel name="currentJob" class="form-control" id="currentJob"
+                                [value]="editExperience?.currentJob">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Descripción del puesto:</label>
+                        <textarea ngModel name="description" class="form-control" id="description">{{editExperience?.description}}</textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="add-experience-form" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" [disabled]="experienceForm.invalid" class="btn btn-primary" (click)="onAddExperience(experienceForm)">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--======= Modal de eliminación =======-->
+<div class="modal fade" id="delExperienceModal" tabindex="-1" role="dialog" aria-labelledby="delExperienceModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delExperienceModalLabel">Experiencia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                        hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Está seguro que desea eliminar la Experiencia?</p>
+                <p>
+                    {{deleteExperience?.title}}<br>
+                    {{deleteExperience?.company}}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="add-experience-form" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger"
+                    (click)="onDeleteExperience(deleteExperience!.idExperience)" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

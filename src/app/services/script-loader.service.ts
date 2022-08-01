@@ -9,9 +9,10 @@ export class ScriptLoaderService {
   loader(jsfiles:string[]){
     for(let jsfile of jsfiles){
       let script = document.createElement("script");
-      script.src = "./assets/" + jsfile + ".js";
+      script.src = jsfile;
       let body =document.getElementsByTagName("body")[0];
       body.appendChild(script);
     }
   }
+ 
 }

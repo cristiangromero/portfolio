@@ -1,5 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Person } from 'src/app/models/Person';
+import { HeadService } from 'src/app/services/head.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { AuthenticationService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,15 +11,27 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-  myPortfolio:any=[];
-  location:any;
+  
+  public person: Person | undefined;
 
-  constructor(private datosPortfolio:PortfolioService) { }
+  constructor(private headService: HeadService, private loggedService:AuthenticationService) { }
+
+  loggedIn(){
+    return this.loggedService.isUserLoggedIn();
+  }
 
   ngOnInit(): void {
-    this.datosPortfolio.getData().subscribe(data =>{
-      this.myPortfolio=data;
-      this.location=data.location;
+    this.getPerson();
+  }
+
+  public getPerson(): void {
+    this.headService.getPerson().subscribe({
+      next: (Response: Person) => {
+        this.person = Response;
+      },
+      error: (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
     });
   }
 

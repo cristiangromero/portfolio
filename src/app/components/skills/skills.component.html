@@ -1,27 +1,83 @@
 <section id="skills" class="skills section-bg">
-    <div class="container">
-
+    <div class="container" *ngIf="skills">
         <div class="section-title">
-            <h2>Skills <a class="bx bx-edit-alt" href="#"></a></h2>
+            <h2>Skills</h2>
         </div>
-
         <div class="row skills-content">
-
-            <div class="col-lg-6" data-aos="fade-up" *ngFor="let skill of myPortfolio">
-
+            <div class="col-lg-6" data-aos="fade-up" *ngFor="let skill of skills">
                 <div class="progress">
-                    <span class="skill">{{skill.name}} <i class="val">{{skill.percent}}%</i></span>
+                    <span class="skill">
+                        {{skill.description}} <i class="val">{{skill.percent}}%</i>
+                        <div *ngIf="loggedIn()">
+                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addSkillsModal" (click)="onOpenSkillModal('edit',skill)" data-whatever="Editar skill"><i class="bx bx-edit-alt"></i></a>
+                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delSkillsModal" (click)="onOpenSkillModal('delete',skill)" data-whatever="Eliminar skill"><i class="bx bx-trash"></i></a>
+                        </div>
+                    </span>
                     <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="skill.percent" aria-valuemin="0"
-                            aria-valuemax="100">
+                        <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="skill.percent" aria-valuemin="0" aria-valuemax="100">
                         </div>
                     </div>
                 </div>
-
             </div>
-
-            <a class="bx bx-add-to-queue" href="#">Agregar</a>
+            <a href="javascript:void(0);" *ngIf="loggedIn()" data-bs-toggle="modal" data-bs-target="#addSkillsModal"
+                data-whatever="Agregar skill"><i class="bx bx-add-to-queue">Agregar</i></a>
         </div>
-
     </div>
 </section>
+<!-- ======= Modal add ======= -->
+<div class="modal fade" id="addSkillsModal" tabindex="-1" role="dialog" aria-labelledby="addSkillsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addSkillsModalLabel">Skills</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                        hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form #skillForm="ngForm">
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Skill:</label>
+                        <input type="text" ngModel name="description" class="form-control" id="description" required
+                            [value]="editSkill?.description">
+                    </div>
+                    <div class="form-group">
+                        <label for="percent" class="col-form-label">Percent:</label>
+                        <input type="number" min="0" max="100" ngModel name="percent" class="form-control" id="percent" required
+                            [value]="editSkill?.percent">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="add-skill-form" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" [disabled]="skillForm.invalid" class="btn btn-primary"
+                    (click)="onAddSkill(skillForm)">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--======= Modal de eliminación =======-->
+<div class="modal fade" id="delSkillsModal" tabindex="-1" role="dialog" aria-labelledby="delSkillsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delSkillsModalLabel">Skills</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Está seguro que desea eliminar el skill?</p>
+                <p>
+                    {{deleteSkill?.description}}<br>
+                    {{deleteSkill?.percent}}%
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="add-skill-form" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="onDeleteSkill(deleteSkill!.idSkill)" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
