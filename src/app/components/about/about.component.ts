@@ -64,7 +64,7 @@ export class AboutComponent implements OnInit {
     }
   }
 
-  public onOpenModal(person: Person) {
+  public onOpenAboutModal(person: Person) {
     this.editPerson = person;
   }
 

@@ -17,7 +17,7 @@ export class SkillsComponent implements OnInit {
   public skills: Skills[] = [];
   public editSkill: Skills | undefined;
   public deleteSkill: Skills | undefined;
-  public modeMethod: String | undefined;
+  public modeSkills: String | undefined;
 
 
   constructor(private skillsService: SkillsService, private loggedService:AuthenticationService) { }
@@ -53,13 +53,16 @@ export class SkillsComponent implements OnInit {
     });
   }
 
-  public onOpenModal(mode: String, skills?: Skills) {
+  public onOpenSkillModal(mode: String, skills?: Skills) {
     if (mode === 'edit') {
       this.editSkill = skills;
-      this.modeMethod = mode;
+      this.modeSkills = mode;
     }
     else if (mode === 'delete') {
       this.deleteSkill = skills;
+    }
+    else{
+      this.modeSkills ='add';
     }
   }
   
@@ -67,7 +70,7 @@ export class SkillsComponent implements OnInit {
     skillForm.value.person = this.person;
     console.log(skillForm.value);
     document.getElementById('add-skill-form')?.click();
-    if (this.modeMethod === 'add') {
+    if (this.modeSkills === 'add') {
       this.skillsService.addSkills(skillForm.value).subscribe({
         next: (Response: Skills) => {
           console.log(Response);
@@ -79,8 +82,8 @@ export class SkillsComponent implements OnInit {
           skillForm.reset();
         }
       })
-    } else if (this.modeMethod === 'edit') {
-      skillForm.value.idSkills = this.editSkill?.idSkill;
+    } else if (this.modeSkills === 'edit') {
+      skillForm.value.idSkill = this.editSkill?.idSkill;
       this.skillsService.updateSkills(skillForm.value).subscribe({
         next: (Response: Skills) => {
           console.log(Response);
@@ -93,7 +96,7 @@ export class SkillsComponent implements OnInit {
         }
       })
     }
-    this.modeMethod = 'add';
+    this.modeSkills = 'add';
   }
 
   public onDeleteSkill(skillsId: number): void {

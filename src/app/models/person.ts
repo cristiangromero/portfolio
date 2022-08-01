@@ -1,5 +1,8 @@
+import { Courses } from "./Courses";
 import { Education } from "./Education";
 import { Experience } from "./Experience";
+import { Languages } from "./Languages";
+import { Projects } from "./Projects";
 import { Skills } from "./Skills";
 import { SocialMedia } from "./SocialMedia";
 
@@ -19,6 +22,9 @@ export interface Person{
     civil:string;
     socials:Array<SocialMedia>;
     skills:Array<Skills>;
-    education:Array<Education>;
-    experience:Array<Experience>;
+    educations:Array<Education>;
+    experiences:Array<Experience>;
+    languages:Array<Languages>;
+    courses:Array<Courses>;
+    projects:Array<Projects>;
 }

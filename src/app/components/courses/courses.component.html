@@ -1,18 +1,78 @@
 <section id="courses" class="services">
     <div class="container">
-
         <div class="section-title">
-            <h2>Cursos y Certificaciones <a class="bx bx-edit-alt" href="#" *ngIf= "loggedIn()"></a></h2>
+            <h2>Cursos y Certificaciones</h2>
         </div>
-
         <div class="row">
-            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" *ngFor="let course of courses">
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" *ngFor="let cour of course">
                 <div class="icon"><i class="bi bi-star-fill"></i></div>
-                <h4 class="title"><a [href]="course.url" target="_blank">{{course.title}}</a></h4>
-                <p class="description">{{course.granted}} - {{course.date}}</p>
+                <h4 class="title"><a [href]="cour.url" target="_blank">{{cour.title}}</a></h4>
+                <p class="description">{{cour.provider}} - {{cour.datefinish}}</p>
+                <div *ngIf="loggedIn()">
+                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addCoursesModal" (click)="onOpenCourseModal('edit',cour)" data-whatever="Editar curso"><i class="bx bx-edit-alt"></i></a>
+                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delCoursesModal" (click)="onOpenCourseModal('delete',cour)" data-whatever="Eliminar curso"><i class="bx bx-trash"></i></a>
+                </div>
             </div>
         </div>
-
-        <a class="bx bx-add-to-queue" href="#" *ngIf= "loggedIn()">Agregar</a>
+        <a href="javascript:void(0);" *ngIf="loggedIn()" data-bs-toggle="modal" data-bs-target="#addCoursesModal"
+                data-whatever="Agregar curso"><i class="bx bx-add-to-queue">Agregar</i></a>
     </div>
 </section>
+<!-- ======= Modal add ======= -->
+<div class="modal fade" id="addCoursesModal" tabindex="-1" role="dialog" aria-labelledby="addCoursesModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addCoursesModalLabel">Cursos y Certificaciones</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <form #courseForm="ngForm">
+            <div class="form-group">
+              <label for="title" class="col-form-label">Título:</label>
+              <input type="text" ngModel name="title" class="form-control" id="title" required [value]="editCourse?.title">
+            </div>
+            <div class="form-group">
+              <label for="url" class="col-form-label">Url:</label>
+              <input type="text" ngModel name="url" class="form-control" id="url" [value]="editCourse?.url">
+            </div>
+            <div class="form-group">
+                <label for="provider" class="col-form-label">Dictado por:</label>
+                <input type="text" ngModel name="provider" class="form-control" id="provider" required [value]="editCourse?.provider">
+            </div>
+            <div class="form-group">
+                <label for="datefinish" class="col-form-label">Fecha de finalización:</label>
+                <input type="date" ngModel name="datefinish" class="form-control" id="datefinish" required [value]="editCourse?.datefinish">
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="add-course-form" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" [disabled]="courseForm.invalid" class="btn btn-primary" (click)="onAddCourses(courseForm)">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--======= Modal de eliminación =======-->
+  <div class="modal fade" id="delCoursesModal" tabindex="-1" role="dialog" aria-labelledby="delCoursesModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="delCoursesModalLabel">Cursos y Certificaciones</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <p>Está seguro que desea eliminar el curso?</p>
+          <p>
+            {{deleteCourse?.title}}<br>
+            {{deleteCourse?.provider}}
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="add-course-form" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" (click)="onDeleteCourses(deleteCourse!.idCourse)" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>

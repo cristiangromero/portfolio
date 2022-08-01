@@ -1,22 +1,81 @@
 <section id="language" class="facts">
     <div class="container">
-
         <div class="section-title">
-            <h2>Idiomas <a class="bx bx-edit-alt" href="#" *ngIf= "loggedIn()"></a></h2>
+            <h2>Idiomas</h2>
         </div>
-
         <div class="row no-gutters">
-
-            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" *ngFor="let lang of language">
+            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" *ngFor="let lang of languages">
                 <div class="count-box">
                     <i class="bi bi-percent"></i>
                     <span data-purecounter-start="0" [attr.data-purecounter-end]="lang.percent" data-purecounter-duration="1"
                         class="purecounter"></span>
-                    <p><strong>{{lang.name}}</strong></p>
+                    <p><strong>{{lang.description}}</strong></p>
+                </div>
+                <div *ngIf="loggedIn()">
+                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addLanguageModal" (click)="onOpenLanguageModal('edit',lang)" data-whatever="Editar idioma"><i class="bx bx-edit-alt"></i></a>
+                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delLanguageModal" (click)="onOpenLanguageModal('delete',lang)" data-whatever="Eliminar idioma"><i class="bx bx-trash"></i></a>
                 </div>
             </div>
-
         </div>
-        <a class="bx bx-add-to-queue" href="#" *ngIf= "loggedIn()">Agregar</a>
+        <a href="javascript:void(0);" *ngIf="loggedIn()" data-bs-toggle="modal" data-bs-target="#addLanguageModal"
+                data-whatever="Agregar idioma"><i class="bx bx-add-to-queue">Agregar</i></a>
     </div>
 </section><!-- End language Section -->
+
+<!-- ======= Modal add ======= -->
+<div class="modal fade" id="addLanguageModal" tabindex="-1" role="dialog" aria-labelledby="addLanguageModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addLanguageModalLabel">Idiomas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                        hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form #languageForm="ngForm">
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Idioma:</label>
+                        <input type="text" ngModel name="description" class="form-control" id="description" required
+                            [value]="editLanguage?.description">
+                    </div>
+                    <div class="form-group">
+                        <label for="percent" class="col-form-label">Porcentaje:</label>
+                        <input type="number" min="0" max="100" ngModel name="percent" class="form-control" id="percent" required
+                            [value]="editLanguage?.percent">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="add-language-form" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" [disabled]="languageForm.invalid" class="btn btn-primary"
+                    (click)="onAddLanguage(languageForm)">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--======= Modal de eliminación =======-->
+<div class="modal fade" id="delSkillsModal" tabindex="-1" role="dialog" aria-labelledby="delSkillsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delSkillsModalLabel">Skills</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Está seguro que desea eliminar el skill?</p>
+                <p>
+                    {{deleteLanguage?.description}}<br>
+                    {{deleteLanguage?.percent}}%
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="add-skill-form" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="onDeleteLanguage(deleteLanguage!.idLanguage)" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -36,6 +36,10 @@ export class HeadComponent implements OnInit {
     this.socialMediaList.push(new SocialMediaClass("whatsapp", "bx bxl-whatsapp"));
     this.socialMediaList.push(new SocialMediaClass("skype", "bx bxl-skype"));
     this.socialMediaList.push(new SocialMediaClass("facebook", "bx bxl-facebook"));
+    this.socialMediaList.push(new SocialMediaClass("instagram", "bx bxl-instagram"));
+    this.socialMediaList.push(new SocialMediaClass("twittwe", "bx bxl-twitter"));
+    this.socialMediaList.push(new SocialMediaClass("twitch", "bx bxl-twitch"));
+    this.socialMediaList.push(new SocialMediaClass("github", "bx bxl-github"));
 
   }
 
@@ -68,6 +72,9 @@ export class HeadComponent implements OnInit {
     }
     else if (mode === 'delete') {
       this.deleteSocial = socialMedia;
+    }
+    else{
+      this.modeMethod = 'add';
     }
   }
   

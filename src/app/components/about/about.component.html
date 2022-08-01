@@ -2,7 +2,7 @@
   <div class="container" *ngIf="person">
 
     <div class="section-title">
-      <h2>About {{person.name}} {{person.surname}} <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#editPersonModal" (click)="onOpenModal(person)" data-whatever="Editar persona" *ngIf="loggedIn()"><i class="bx bx-edit-alt"></i></a></h2>      
+      <h2>About {{person.name}} {{person.surname}} <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#editPersonModal" (click)="onOpenAboutModal(person)" data-whatever="Editar persona" *ngIf="loggedIn()"><i class="bx bx-edit-alt"></i></a></h2>      
       <p>{{person.aboutme}}</p>
 <!--  <p>{{person.mydescrip}}</p>
       <p>{{person.mydescrip2}}</p> -->

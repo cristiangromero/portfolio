@@ -2,17 +2,79 @@
     <div class="container">
 
         <div class="section-title">
-            <h2>Portfolio <a class="bx bx-edit-alt" href="#" *ngIf= "loggedIn()"></a></h2>
+            <h2>Proyectos</h2>
         </div>
 
         <div class="row">
-            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" *ngFor="let project of myPortfolio">
-                <h4 class="title"><a [href]="project.url" target="_blank">{{project.title}}</a>
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" *ngFor="let pro of project">
+                <h4 class="title"><a [href]="pro.url" target="_blank">{{pro.title}}</a>
                 </h4>
-                <p class="description">{{project.rol}} - {{project.description}}</p>
+                <p class="description">{{pro.rol}} - {{pro.description}}</p>
+                <div *ngIf="loggedIn()">
+                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addProjectsModal" (click)="onOpenProjectModal('edit',pro)" data-whatever="Editar projecto"><i class="bx bx-edit-alt"></i></a>
+                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delprojectsModal" (click)="onOpenProjectModal('delete',pro)" data-whatever="Eliminar projecto"><i class="bx bx-trash"></i></a>
+                </div>
             </div>
         </div>
-        <a class="bx bx-add-to-queue" href="#" *ngIf= "loggedIn()">Agregar</a>
+        <a href="javascript:void(0);" *ngIf="loggedIn()" data-bs-toggle="modal" data-bs-target="#addProjectsModal"
+                data-whatever="Agregar projecto"><i class="bx bx-add-to-queue">Agregar</i></a>
     </div>
-
 </section>
+<!-- ======= Modal add ======= -->
+<div class="modal fade" id="addProjectsModal" tabindex="-1" role="dialog" aria-labelledby="addProjectsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProjectsModalLabel">Proyectos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <form #projectForm="ngForm">
+            <div class="form-group">
+              <label for="title" class="col-form-label">Título:</label>
+              <input type="text" ngModel name="title" class="form-control" id="title" required [value]="editProject?.title">
+            </div>
+            <div class="form-group">
+              <label for="url" class="col-form-label">Url:</label>
+              <input type="text" ngModel name="url" class="form-control" id="url" [value]="editProject?.url">
+            </div>
+            <div class="form-group">
+                <label for="rol" class="col-form-label">Rol desempeñado:</label>
+                <input type="text" ngModel name="rol" class="form-control" id="rol" required [value]="editProject?.rol">
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-form-label">Descripción:</label>
+                <textarea type="text" ngModel name="description" class="form-control" id="description">{{editProject?.description}}</textarea>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="add-project-form" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" [disabled]="projectForm.invalid" class="btn btn-primary" (click)="onAddProjects(projectForm)">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--======= Modal de eliminación =======-->
+  <div class="modal fade" id="delProjectsModal" tabindex="-1" role="dialog" aria-labelledby="delProjectsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="delProjectsModalLabel">Cursos y Certificaciones</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <p>Está seguro que desea eliminar el curso?</p>
+          <p>
+            {{deleteProject?.title}}<br>
+            {{deleteProject?.rol}}
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="add-project-form" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" (click)="onDeleteProjects(deleteProject!.idProject)" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>

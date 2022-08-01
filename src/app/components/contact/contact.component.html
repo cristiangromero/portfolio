@@ -2,29 +2,29 @@
     <div class="container">
 
         <div class="section-title">
-            <h2>Contacto <a class="bx bx-edit-alt" href="#" *ngIf= "loggedIn()"></a></h2>
+            <h2>Contacto</h2>
         </div>
 
         <div class="row" data-aos="fade-in">
 
-            <div class="d-flex align-items-stretch">
+            <div class="d-flex align-items-stretch" *ngIf="person">
                 <div class="info">
                     <div class="address">
                         <i class="bi bi-geo-alt"></i>
                         <h4>Dirección:</h4>
-                        <p>{{location.address}}</p>
+                        <p>{{person.address}}</p>
                     </div>
 
                     <div class="email">
                         <i class="bi bi-envelope"></i>
                         <h4>Email:</h4>
-                        <p>{{myPortfolio.email}}</p>
+                        <p>{{person.email}}</p>
                     </div>
 
                     <div class="phone">
                         <i class="bi bi-phone"></i>
                         <h4>Teléfono:</h4>
-                        <p>{{myPortfolio.phone}}</p>
+                        <p>{{person.phone}}</p>
                     </div>
                 </div>
 
