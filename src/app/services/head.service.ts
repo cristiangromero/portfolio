@@ -10,7 +10,7 @@ import { SocialMedia } from '../models/SocialMedia';
 })
 export class HeadService {
 
-  private url = environment.apiUrl;
+  private url = 'https://portfoliocristian.herokuapp.com/api/';
 
   constructor(private http:HttpClient) { }
 

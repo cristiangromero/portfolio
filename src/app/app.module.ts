@@ -20,6 +20,8 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpInterceptorService } from './httpInterceptor.service';
+import { NgxTypedJsModule } from 'ngx-typed-js';
+import { CountUpModule } from 'ngx-countup';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { HttpInterceptorService } from './httpInterceptor.service';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxTypedJsModule,
+    CountUpModule,
     FormsModule
   ],
   providers: [

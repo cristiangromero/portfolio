@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgxTypedJsComponent, NgxTypedJsModule } from 'ngx-typed-js';
 import { Person } from 'src/app/models/Person';
 import { HeroService } from 'src/app/services/hero.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { AuthenticationService } from '../../services/auth.service';
-
 
 @Component({
   selector: 'app-hero',
@@ -13,7 +13,6 @@ import { AuthenticationService } from '../../services/auth.service';
 })
 export class HeroComponent implements OnInit {
   public person: Person | undefined;
-  
   constructor(private heroService: HeroService, private loggedService:AuthenticationService) { }
 
   loggedIn(){
