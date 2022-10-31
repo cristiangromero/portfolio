@@ -10,21 +10,27 @@
             <div class="d-flex align-items-stretch" *ngIf="person">
                 <div class="info">
                     <div class="address">
+                        <a href="https://www.google.com.ar/maps/@-27.3628534,-55.9024537,15z" target="_blank">
                         <i class="bi bi-geo-alt"></i>
                         <h4>Dirección:</h4>
                         <p>{{person.address}}</p>
+                        </a>
                     </div>
 
                     <div class="email">
-                        <i class="bi bi-envelope"></i>
-                        <h4>Email:</h4>
-                        <p>{{person.email}}</p>
+                        <a href="mailto:{{person.email}}" target="_blank">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>{{person.email}}</p>
+                        </a>
                     </div>
 
                     <div class="phone">
-                        <i class="bi bi-phone"></i>
-                        <h4>Teléfono:</h4>
-                        <p>{{person.phone}}</p>
+                        <a href="tel:{{person.phone}}" target="_blank">
+                            <i class="bi bi-phone"></i>
+                            <h4>Teléfono:</h4>
+                            <p>{{person.phone}}</p>
+                        </a>
                     </div>
                 </div>
 
