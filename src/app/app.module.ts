@@ -20,6 +20,11 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpInterceptorService } from './httpInterceptor.service';
+import { NgxTypedJsModule } from 'ngx-typed-js';
+import { CountUpModule } from 'ngx-countup';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgxSpinnerModule } from "ngx-spinner";
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +47,10 @@ import { HttpInterceptorService } from './httpInterceptor.service';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxTypedJsModule,
+    CountUpModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
     FormsModule
   ],
   providers: [
@@ -49,6 +58,11 @@ import { HttpInterceptorService } from './httpInterceptor.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
       multi: true
     }
   ],

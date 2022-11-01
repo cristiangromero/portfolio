@@ -1,7 +1,16 @@
 <!-- ======= Mobile nav toggle button =======
 <i class="bi bi-list mobile-nav-toggle d-xl-none"></i> -->
 
-<router-outlet></router-outlet>
+<router-outlet>
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-    class="bi bi-arrow-up-short"></i></a>
+    <ngx-spinner 
+        bdColor = "rgba(0, 0, 0, 0.8)" 
+        size = "medium" 
+        color = "#fff" 
+        type = "square-jelly-box" >
+        <p style="color: white" > Cargando, por favor espere... </p>
+    </ngx-spinner>
+
+</router-outlet>
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

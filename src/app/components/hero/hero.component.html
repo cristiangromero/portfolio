@@ -2,7 +2,11 @@
   <div class="hero-container" data-aos="fade-in" *ngIf="person">
     <h1>{{person.name}} {{person.surname}}</h1>
     <p>
-      Soy <span class="typed" [attr.data-typed-items]="person.iam"></span>
+      <!-- Soy <span class="typed" [attr.data-typed-items]="person.iam"></span> -->
+      <ngx-typed-js [strings]= "['Analista de sistemas', 'Desarrollador Fullstack']" [typeSpeed]="100" [loop]="true" >
+        Soy <span class="typing"></span>
+      </ngx-typed-js>
+
     </p>
   </div>
 </section>

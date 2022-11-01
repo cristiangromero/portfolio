@@ -6,9 +6,7 @@
         <div class="row no-gutters">
             <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" *ngFor="let lang of languages">
                 <div class="count-box">
-                    <i class="bi bi-percent"></i>
-                    <span data-purecounter-start="0" [attr.data-purecounter-end]="lang.percent" data-purecounter-duration="1"
-                        class="purecounter"></span>
+                    <span [countUp]="lang.percent" [options]="{ enableScrollSpy: true, suffix: '%' }">0</span>
                     <p><strong>{{lang.description}}</strong></p>
                 </div>
                 <div *ngIf="loggedIn()">

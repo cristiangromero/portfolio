@@ -9,7 +9,7 @@ import { Projects } from '../models/Projects';
   providedIn: 'root'
 })
 export class ProjectService {
-  private url = environment.apiUrl;
+  private url = 'https://portfoliocristian.herokuapp.com/api/';
 
   constructor(private http:HttpClient) { }
 

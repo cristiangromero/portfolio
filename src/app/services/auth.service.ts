@@ -15,7 +15,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   authenticationService(username: string, password: string) {
-    return this.http.get(`http://localhost:8080/api/basicauth`,
+    return this.http.get(`https://portfoliocristian.herokuapp.com/api/basicauth`,
       { headers: { authorization: this.createBasicAuthToken(username, password) } }).pipe(map((res) => {
         this.username = username;
         this.password = password;

@@ -12,6 +12,7 @@ export class ScriptLoaderService {
       script.src = jsfile;
       let body =document.getElementsByTagName("body")[0];
       body.appendChild(script);
+      console.log(script);
     }
   }
  

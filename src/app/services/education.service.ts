@@ -9,7 +9,7 @@ import { Person } from '../models/Person';
   providedIn: 'root'
 })
 export class EducationService {
-  private url = environment.apiUrl;
+  private url = 'https://portfoliocristian.herokuapp.com/api/';
 
   constructor(private http:HttpClient) { }
 

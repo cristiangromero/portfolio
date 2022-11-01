@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PortfolioService {
 
-  private url = environment.apiUrl;
+  private url = 'https://portfoliocristian.herokuapp.com/api/';
 
   constructor(private http:HttpClient) { }
 

@@ -10,7 +10,7 @@ import { Person } from '../models/Person';
 })
 export class CoursesService {
 
-  private url = environment.apiUrl;
+  private url = 'https://portfoliocristian.herokuapp.com/api/';
 
   constructor(private http:HttpClient) { }
 
